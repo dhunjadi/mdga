@@ -1,3 +1,9 @@
+// BACKGROUND
+bg = document.querySelector('.background');
+
+//BUTTON
+rollBtn = document.querySelector('.btn-roll');
+
 // MODAL START
 modal = document.querySelector('.modal');
 twoPlayers = document.querySelector('.two-players');
@@ -6,6 +12,8 @@ fourPlayers = document.querySelector('.four-players');
 
 // TABLE
 table = document.querySelector('.table');
+diceDiv = document.querySelector('.dice-div');
+diceImg = document.querySelector('.dice-img');
 
 // P1 SQUARE
 p1Square = document.querySelector('.p1-square');
@@ -54,6 +62,9 @@ gameStart2 = function (){
   p3Square.classList.remove('hidden');
   p4Square.classList.remove('hidden');
   diceDiv.classList.remove('hidden');
+  rollBtn.classList.remove('hidden');
+  bg.style.background = 'linear-gradient(135deg, #B22331 0%, #871B26 100%)';
+
   for(i = 0; i < p3Length.length; i++){
     p3Length[i].classList.add('disabled');
     p4Length[i].classList.add('disabled');
@@ -68,6 +79,7 @@ gameStart3 = function (){
   p3Square.classList.remove('hidden');
   p4Square.classList.remove('hidden');
   diceDiv.classList.remove('hidden');
+  rollBtn.classList.remove('hidden');
   for(i = 0; i < p3Length.length; i++){
     p4Length[i].classList.add('disabled');
   }
@@ -80,6 +92,7 @@ gameStart4 = function (){
   p2Square.classList.remove('hidden');
   p3Square.classList.remove('hidden');
   p4Square.classList.remove('hidden');
+  rollBtn.classList.remove('hidden');
   diceDiv.classList.remove('hidden');
 }
 
@@ -89,13 +102,11 @@ fourPlayers.addEventListener('click', gameStart4);
 
 // DICE ROLL
 
-const diceDiv = document.querySelector('.dice-div');
-const diceImage = document.querySelector('.dice-div img');
+rollBtn.addEventListener('click', function(){
+  const dice = Math.trunc(Math.random() * 6) + 1;
+  diceImg.src = `images/dice${dice}.png`;
 
-diceNumber = function () {
-  diceNumber = Math.floor(Math.random() * 6) + 1;
-  diceImageSource = 'images/dice' + diceNumber + '.png'
-  diceImage.setAttribute('src', diceImageSource);
-}
-
-diceImage.addEventListener('click', diceNumber);
+  if(dice === 6){
+    console.log('congrats');
+  }
+})
